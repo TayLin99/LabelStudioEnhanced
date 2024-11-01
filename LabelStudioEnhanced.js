@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Label Studio Enhanced Controls
-// @namespace    http://tampermonkey.net/
-// @version      1.0
+// @namespace    https://github.com/TayLin99/LabelStudioEnhanced
+// @version      2.0
 // @description  Adds custom key controls and CSS modifications to Label Studio with toggle switches.
 // @author       TayLin99
 // @match        https://label.insta360.com/*
