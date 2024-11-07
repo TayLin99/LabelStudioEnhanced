@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Label Studio Panoramic Enhanced
 // @namespace    https://github.com/TayLin99/LabelStudioEnhanced
-// @version      3.0
+// @version      3.1
 // @description  全景标注操作增强：快捷键、样式修改
 // @author       TayLin99
 // @match        https://label.insta360.com/*
@@ -13,7 +13,9 @@
     'use strict';
 
     // 初始化开关变量
-    let cameraMovementKeyFrameHotKey = 1;//键盘↔️，关键帧切换。0关闭，1开启。
+    let cameraMovementKeyFrameHotKey = 0;//键盘↔️，关键帧切换。0关闭，1开启。
+    // 当前解决方法不完美，所以关掉了
+    
     let annotationPanel = 1;//键盘↕️，帧切换。0关闭，1开启。
     let playAndPauseButtonFunction = 1;//键盘空格键，播放/暂停。0关闭，1开启。
     let cssControl = 1;//CSS注入。0关闭，1开启
