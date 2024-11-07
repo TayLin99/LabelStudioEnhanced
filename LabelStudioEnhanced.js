@@ -1,51 +1,51 @@
 // ==UserScript==
-// @name         Label Studio Enhanced Controls
+// @name         Label Studio Panoramic Enhanced
 // @namespace    https://github.com/TayLin99/LabelStudioEnhanced
-// @version      2.0
-// @description  Adds custom key controls and CSS modifications to Label Studio with toggle switches.
+// @version      3.0
+// @description  全景标注操作增强：快捷键、样式修改
 // @author       TayLin99
 // @match        https://label.insta360.com/*
 // @grant        none
-// @require      https://raw.githubusercontent.com/TayLin99/LabelStudioEnhanced/refs/heads/main/LabelStudioEnhanced.js
+// @require      https://raw.githubusercontent.com/TayLin99/LabelStudioEnhanced/refs/heads/main/LabelStudioPanoramicEnhanced.js
 // ==/UserScript==
 
 (function() {
     'use strict';
 
     // 初始化开关变量
-    let keyFrameSwitchFunction = 1;//键盘↔️，关键帧切换。0关闭，1开启。
-    let frameSwitchFunction = 1;//键盘↕️，帧切换。0关闭，1开启。
+    let cameraMovementKeyFrameHotKey = 1;//键盘↔️，关键帧切换。0关闭，1开启。
+    let annotationPanel = 1;//键盘↕️，帧切换。0关闭，1开启。
     let playAndPauseButtonFunction = 1;//键盘空格键，播放/暂停。0关闭，1开启。
     let cssControl = 1;//CSS注入。0关闭，1开启
 
     // 监听键盘事件
     document.addEventListener('keydown', function(event) {
-        if (keyFrameSwitchFunction) {
+        if (cameraMovementKeyFrameHotKey) {
             if (event.key === "ArrowLeft") {
-                let prevKeyFrameButton = document.evaluate('//*[@id="label-studio-dm"]/div/div[2]/div/div[1]/div[1]/div/div/div[1]/div[1]/div/div[3]/div[1]/div[1]/div[2]/div[2]/button[1]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-                if (prevKeyFrameButton) {
-                    prevKeyFrameButton.click();
+                let amPrevKeyFrame = document.evaluate('//div=[@class="keyframe-btns__item"][1]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                if (amPrevKeyFrame) {
+                    amPrevKeyFrame.click();
                     event.preventDefault();
                 }
             } else if (event.key === "ArrowRight") {
-                let nextKeyFrameButton = document.evaluate('//*[@id="label-studio-dm"]/div/div[2]/div/div[1]/div[1]/div/div/div[1]/div[1]/div/div[3]/div[1]/div[1]/div[2]/div[2]/button[5]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-                if (nextKeyFrameButton) {
-                    nextKeyFrameButton.click();
+                let amNextKeyFrame = document.evaluate('//div=[@class="keyframe-btns__item"][3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                if (amNextKeyFrame) {
+                    amNextKeyFrame.click();
                     event.preventDefault();
                 }
             }
         }
-        if (frameSwitchFunction) {
+        if (annotationPanel) {
             if (event.key === "ArrowUp") {
-                let prevFrameButton = document.evaluate('//*[@id="label-studio-dm"]/div/div[2]/div/div[1]/div[1]/div/div/div[1]/div[1]/div/div[3]/div[1]/div[1]/div[2]/div[2]/button[2]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-                if (prevFrameButton) {
-                    prevFrameButton.click();
+                let aPrevFrame = document.evaluate('//div[@class="lsf-timeline-controls__main-controls"]//div[2]/button[2]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                if (aPrevFrame) {
+                    aPrevFrame.click();
                     event.preventDefault();
                 }
             } else if (event.key === "ArrowDown") {
-                let nextFrameButton = document.evaluate('//*[@id="label-studio-dm"]/div/div[2]/div/div[1]/div[1]/div/div/div[1]/div[1]/div/div[3]/div[1]/div[1]/div[2]/div[2]/button[4]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-                if (nextFrameButton) {
-                    nextFrameButton.click();
+                let aNextFrame = document.evaluate('//div[@class="lsf-timeline-controls__main-controls"]//div[2]/button[4]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                if (aNextFrame) {
+                    aNextFrame.click();
                     event.preventDefault();
                 }
             }
@@ -53,9 +53,9 @@
         if (playAndPauseButtonFunction) {
             if(event.code === "Space"){
 
-                let playPauseButton = document.evaluate('//*[@id="label-studio-dm"]/div/div[2]/div/div[1]/div[1]/div/div/div[1]/div[1]/div/div[3]/div[1]/div[1]/div[2]/div[2]/button[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-                if (playPauseButton) {
-                    playPauseButton.click();
+                let aPlayPauseButton = document.evaluate('//div[@class="lsf-timeline-controls__main-controls"]//div[2]/button[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                if (aPlayPauseButton) {
+                    aPlayPauseButton.click();
                 }
                 event.preventDefault();
             }
